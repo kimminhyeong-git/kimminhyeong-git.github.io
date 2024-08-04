@@ -428,3 +428,49 @@
                     const projectId = item.getAttribute('data-project');
                     const projectData = getProjectData(projectId);
                     modalTitle.textContent = projectData.title;
+                    modalDescription.textContent = projectData.description;
+                    modal.style.display = 'block';
+                });
+            });
+
+            closeBtn.onclick = () => {
+                modal.style.display = 'none';
+            };
+
+            window.onclick = (event) => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            };
+
+            // Dark mode toggle
+            darkModeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const icon = darkModeToggle.querySelector('i');
+                if (document.body.classList.contains('dark-mode')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            });
+
+            // Project data (you can replace this with actual data)
+            function getProjectData(projectId) {
+                const projects = {
+                    project1: {
+                        title: '프로젝트 1: [프로젝트 이름]',
+                        description: '이 프로젝트는 [상세한 프로젝트 설명]. 주요 특징으로는 [특징 1], [특징 2], [특징 3] 등이 있습니다. 이 프로젝트에서 제 역할은 [역할 설명]이었으며, 주요 성과로는 [성과 1], [성과 2] 등이 있습니다.'
+                    },
+                    project2: {
+                        title: '프로젝트 2: [프로젝트 이름]',
+                        description: '이 프로젝트는 [상세한 프로젝트 설명]. 주요 특징으로는 [특징 1], [특징 2], [특징 3] 등이 있습니다. 이 프로젝트에서 제 역할은 [역할 설명]이었으며, 주요 성과로는 [성과 1], [성과 2] 등이 있습니다.'
+                    }
+                };
+                return projects[projectId];
+            }
+        });
+    </script>
+</body>
+</html>
